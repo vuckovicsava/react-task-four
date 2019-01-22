@@ -7,7 +7,8 @@ class App extends Component {
     lat: '',
     lng: '',
     error: false,
-    flights: []
+    flights: [],
+    fetching: false
   }
 
   getGeolocationData = () => {
@@ -29,14 +30,29 @@ class App extends Component {
 
   makeAPICall = (lat, lng) => {
     const URL = `https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${lat}&lng=${lng}&fDstL=0&fDstU=1000`;
-    // fetch(URL)
-    //   .then(res => res.json())
-    //   .then(results => console.log(results))
-    //   .catch(err => console.log(err));
+    this.setState({ fetching: true });
     axios.get(URL)
       .then(res => res.data)
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data);
+        this.setState({
+          flights: data.acList,
+          fetching: false
+        })
+      })
       .catch(error => this.setState({ error }))
+  }
+
+  renderFlights = () => {
+    return this.state.flights.map(flight => (
+      <ul key={flight.Id}>
+        <li>{flight.Id}</li>
+        <li>{flight.Lat}</li>
+        <li>{flight.Long}</li>
+        <li>{flight.Op}</li>
+        <li>{flight.Mdl}</li>
+      </ul>
+    ))
   }
  
   render() {
@@ -47,6 +63,11 @@ class App extends Component {
 
         <button onClick={this.getGeolocationData}>Get Flights</button>
         <h1>{null}</h1>
+
+        <hr/>
+        {
+          this.state.fetching ? <div>FETCHING</div> : this.renderFlights() 
+        }
       </div>
     );
   }
