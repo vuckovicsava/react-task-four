@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+
+  state = {
+    lat: '',
+    lng: '',
+    notSupported: false
+  }
+
+  getGeolocationData = () => {
+    if (navigator.geolocation) {
+      console.log(navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(position => {
+        // this.setState({
+        //   lat: position.coords.latitude,
+        //   lng: position.coords.longitude
+        // })
+        this.makeAPICall(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      this.setState({ error: true });
+    }
+  }
+
+  makeAPICall = (lat, lng) => {
+    const URL = `https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${lat}&lng=${lng}&fDstL=0&fDstU=1000`;
+    fetch(URL)
+      .then(res => res.json())
+      .then(results => console.log(results))
+      .catch(err => console.log(err));
+  }
+ 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>React Task Four</h1>
+        { this.state.error && <h1>Geolocation not supported</h1> }
+
+        <button onClick={this.getGeolocationData}>Make API request</button>
       </div>
     );
   }
