@@ -46,7 +46,7 @@ class App extends Component {
       .catch(() => this.setState({ error: 'An error occured while fetching data' }));
 
     // getFlights() will call itself every 60 seconds to reload data
-    // setTimeout(this.getFlights, 60000);  | UNCOMMENT LATER
+    // setTimeout(this.getFlights, 60000);
   }
  
   render() {
