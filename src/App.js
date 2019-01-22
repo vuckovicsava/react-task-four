@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ClipLoader } from 'react-spinners';
 import axios from 'axios';
+import FlightList from './FlightList';
 
 class App extends Component {
 
@@ -45,19 +46,7 @@ class App extends Component {
       .catch(() => this.setState({ error: 'An error occured while fetching data' }));
 
     // getFlights() will call itself every 60 seconds to reload data
-    setTimeout(this.getFlights, 60000);
-  }
-
-  renderFlights = () => {
-    return this.state.flights.map(flight => (
-      <ul key={flight.Id}>
-        <li>{flight.Id}</li>
-        <li>{flight.Lat}</li>
-        <li>{flight.Long}</li>
-        <li>{flight.Op}</li>
-        <li>{flight.Mdl}</li>
-      </ul>
-    ))
+    // setTimeout(this.getFlights, 60000);  | UNCOMMENT LATER
   }
  
   render() {
@@ -77,7 +66,7 @@ class App extends Component {
                 color={'#123abc'}
                 loading={this.state.fetching}
               /> 
-            : this.renderFlights() 
+            : <FlightList flights={this.state.flights}/> 
         }
       </div>
     );
