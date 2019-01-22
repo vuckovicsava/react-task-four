@@ -1,10 +1,10 @@
 import React from 'react';
 
 const FlightItem = ({ flight }) => {
-  const { Id, Op } = flight;
+  const { Id, Op, Cou, Year, Man } = flight;
   return (
     <tr>
-      <td>Flight ID: {Id}</td>
+      <td>{Id}</td>
       <td>
         <img 
           src={Op ? `https://logo.clearbit.com/${Op.toLowerCase().replace(/\s/g, '')}.com` : 'https://via.placeholder.com/100' }
@@ -12,6 +12,9 @@ const FlightItem = ({ flight }) => {
           alt={Op}
         />
       </td>
+      <td>{Cou || 'Not Available'}</td>
+      <td>{Year || 'Not Available'}</td>
+      <td>{Man || 'Not Available'}</td>
     </tr>
   )
 }
