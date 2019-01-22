@@ -23,3 +23,19 @@ code {
 .flight-table td {
   border: 1px solid black;
 }
+
+.pagination {
+  border: 1px solid black;
+  list-style-type: none;
+  padding: 0;
+  width: 50%;
+  margin: 10px auto;
+  display: flex;
+}
+
+.pagination li {
+  display: inline-block;
+  flex: 1;
+  border: 1px solid black;
+  text-align: center
+}

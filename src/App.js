@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ClipLoader } from 'react-spinners';
+import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import FlightList from './FlightList';
 
@@ -9,8 +10,10 @@ class App extends Component {
     lat: '',
     lng: '',
     flights: [],
+    shownFlights: [],
     error: false,
-    fetching: false
+    fetching: false,
+    activePage: 1
   }
 
   getGeolocationData = () => {
@@ -48,6 +51,10 @@ class App extends Component {
     // getFlights() will call itself every 60 seconds to reload data
     // setTimeout(this.getFlights, 60000);
   }
+
+  handlePageChange = (number) => {
+    console.log(number);
+  }
  
   render() {
     return (
@@ -68,6 +75,18 @@ class App extends Component {
               /> 
             : <FlightList flights={this.state.flights}/> 
         }
+
+        <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={15}
+          totalItemsCount={this.state.flights.list}
+          pageRangeDisplayed={5}
+          onChange={this.handlePageChange}
+          firstPageText="First"
+          lastPageText="Last"
+          prevPageText="Prev"
+          nextPageText="Next"
+        />
       </div>
     );
   }
