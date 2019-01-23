@@ -2,7 +2,7 @@ import React from 'react';
 
 const AircraftItem = ({ aircraft }) => {
   const { Id, Op, Cou, Year, Man } = aircraft;
-  
+
   return (
     <tr>
       <td>{Id}</td>
@@ -17,7 +17,7 @@ const AircraftItem = ({ aircraft }) => {
       <td>{Year || 'Not Available'}</td>
       <td>{Man || 'Not Available'}</td>
     </tr>
-  )
+  );
 }
 
 export default AircraftItem;

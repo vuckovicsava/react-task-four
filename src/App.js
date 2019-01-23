@@ -13,7 +13,9 @@ class App extends Component {
     shownAircrafts: [],
     error: false,
     fetching: false,
-    activePage: 1
+    activePage: 1,
+    itemsPerPage: 15,
+    pageRangeDisplayed: 5
   }
 
   getGeolocationData = () => {
@@ -49,8 +51,13 @@ class App extends Component {
     // setTimeout(this.getAircraftList, 60000);
   }
 
-  handlePageChange = (number) => {
-    console.log(number);
+  handlePageChange = number => {
+    const indexOfLastItem = this.state.activePage * this.state.itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - this.state.itemsPerPage;
+    this.setState({ 
+      activePage: number,
+      shownAircrafts: this.state.allAircrafts.slice(indexOfFirstItem, indexOfLastItem)
+    })
   }
  
   render() {
@@ -75,9 +82,9 @@ class App extends Component {
 
         <Pagination
           activePage={this.state.activePage}
-          itemsCountPerPage={15}
+          itemsCountPerPage={this.state.itemsPerPage}
           totalItemsCount={this.state.allAircrafts.length}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={this.state.pageRangeDisplayed}
           onChange={this.handlePageChange}
           firstPageText="First"
           lastPageText="Last"
