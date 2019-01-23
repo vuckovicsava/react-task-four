@@ -13,14 +13,14 @@ code {
     monospace;
 }
 
-.flight-table {
+.aircraft-table {
   border: 1px solid black;
   width: 100%;
 }
 
-.flight-table tr,
-.flight-table th,
-.flight-table td {
+.aircraft-table tr,
+.aircraft-table th,
+.aircraft-table td {
   border: 1px solid black;
 }
 

@@ -1,7 +1,8 @@
 import React from 'react';
 
-const FlightItem = ({ flight }) => {
-  const { Id, Op, Cou, Year, Man } = flight;
+const AircraftItem = ({ aircraft }) => {
+  const { Id, Op, Cou, Year, Man } = aircraft;
+  
   return (
     <tr>
       <td>{Id}</td>
@@ -19,4 +20,4 @@ const FlightItem = ({ flight }) => {
   )
 }
 
-export default FlightItem;
+export default AircraftItem;

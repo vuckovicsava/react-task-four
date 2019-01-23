@@ -1,8 +1,8 @@
 import React from 'react';
-import FlightItem from './FlightItem';
+import AircraftItem from './AircraftItem';
 
-const FlightList = ({ flights }) => (
-  <table className="flight-table">
+const AircraftList = ({ aircrafts }) => (
+  <table className="aircraft-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -13,9 +13,9 @@ const FlightList = ({ flights }) => (
       </tr>
     </thead>
     <tbody>
-      {flights.map(flight => <FlightItem key={flight.Id} flight={flight}/>)}
+      {aircrafts.map(ac => <AircraftItem key={ac.Id} aircraft={ac}/>)}
     </tbody>
   </table>
 );
 
-export default FlightList;
+export default AircraftList;
