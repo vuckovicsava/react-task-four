@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ClipLoader } from 'react-spinners';
 import Pagination from 'react-js-pagination';
+import { Consumer } from '../context';
 import AircraftList from './AircraftList';
 
-export default class IndexPage extends Component {
+const IndexPage = () => (
+  <Consumer>
+    {({ 
+      getGeolocationData, 
+      fetching, 
+      activePage, 
+      itemsPerPage, 
+      allAircrafts, 
+      pageRange, 
+      setActivePage,
+      shownAircrafts
+    }) => (
+      <div>
+        <button onClick={getGeolocationData}>Get Aircraft Data</button>
 
-  state = {
-    shownAircrafts: []
-  }
-
-  render() {
-    return (
-      <>
-        <h1>React Task Four</h1>
-        <button>Get Aircraft Data</button>
-        <hr/>
-
-        { 
-          this.state.fetching 
-            ? <ClipLoader
-                sizeUnit={"px"}
-                size={150}
-                color={'#123abc'}
-                loading={this.state.fetching}
-              /> 
-            : <AircraftList aircrafts={this.state.shownAircrafts}/> 
-        }
+        { fetching && <ClipLoader sizeUnit={'px'} size={150} color={'#123abc'} loading={fetching} /> }
 
         <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={this.state.itemsPerPage}
-          totalItemsCount={this.state.allAircrafts.length}
-          pageRangeDisplayed={this.state.pageRangeDisplayed}
-          onChange={this.handlePageChange}
+          activePage={activePage}
+          itemsCountPerPage={itemsPerPage}
+          totalItemsCount={allAircrafts.length}
+          pageRangeDisplayed={pageRange}
+          onChange={setActivePage}
           firstPageText="First"
           lastPageText="Last"
           prevPageText="Prev"
           nextPageText="Next"
         />
-      </>
-    );
-  }
-}
+
+        <AircraftList aircrafts={shownAircrafts}/>
+      </div>
+    )}
+  </Consumer>
+);
+
+export default IndexPage;
