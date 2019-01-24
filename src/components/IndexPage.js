@@ -13,7 +13,7 @@ const IndexPage = () => (
       itemsPerPage, 
       allAircrafts, 
       pageRange, 
-      setActivePage,
+      handlePageChange,
       shownAircrafts
     }) => (
       <div>
@@ -21,19 +21,22 @@ const IndexPage = () => (
 
         { fetching && <ClipLoader sizeUnit={'px'} size={150} color={'#123abc'} loading={fetching} /> }
 
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={itemsPerPage}
-          totalItemsCount={allAircrafts.length}
-          pageRangeDisplayed={pageRange}
-          onChange={setActivePage}
-          firstPageText="First"
-          lastPageText="Last"
-          prevPageText="Prev"
-          nextPageText="Next"
-        />
-
-        <AircraftList aircrafts={shownAircrafts}/>
+        { shownAircrafts.length > 0 && (
+          <>
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={itemsPerPage}
+              totalItemsCount={allAircrafts.length}
+              pageRangeDisplayed={pageRange}
+              onChange={handlePageChange}
+              firstPageText="First"
+              lastPageText="Last"
+              prevPageText="Prev"
+              nextPageText="Next"
+            />
+            <AircraftList aircrafts={shownAircrafts}/>
+          </>
+        )}
       </div>
     )}
   </Consumer>

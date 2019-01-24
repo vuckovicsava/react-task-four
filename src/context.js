@@ -8,6 +8,7 @@ export class Provider extends Component {
   state = {
     allAircrafts: [],
     shownAircrafts: [],
+    activeAircraft: null,
     lat: null,
     lng: null,
     fetching: false,
@@ -24,16 +25,19 @@ export class Provider extends Component {
     axios.get(URL)
       .then(res => res.data)
       .then(data => {
-        console.log(data); // inspect the data | REMOVE LATER
-        this.setState({
+        const indexOfLastItem = this.state.activePage * this.state.itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem - this.state.itemsPerPage;
+        
+        this.setState({ 
           allAircrafts: data.acList,
+          shownAircrafts: data.acList.slice(indexOfFirstItem, indexOfLastItem),
           fetching: false
         });
       })
-      .catch(() => this.setState({ error: 'An error occured while fetching data' }));
+      .catch(() => this.setState({ error: 'An error occured while fetching data, please try again later' }));
   }
 
-  // get lat & lng from the user
+  // get lat & lng from the user, make the API call is successful, otherwise show error
   getGeolocationData = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -42,7 +46,10 @@ export class Provider extends Component {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           }, 
-          () => this.getAircraftList()
+          () => {
+            this.getAircraftList();
+            setInterval(this.getAircraftList, 60000);
+          }
         );
       }, err => this.setState({ error: 'Geolocation has to be enabled in order to get flights data ' }));
     } else {
@@ -50,24 +57,21 @@ export class Provider extends Component {
     }
   }
 
-  // decide which subset of all aircrafts is shown based on which page is active
-  setActivePage = number => {
-    const indexOfLastItem = this.state.activePage * this.state.itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - this.state.itemsPerPage;
-    const shownAircrafts = this.state.allAircrafts.slice(indexOfFirstItem, indexOfLastItem);
-    
-    this.setState({ 
-      activePage: number,
-      shownAircrafts
+  // handle the pagination change
+  handlePageChange = number => {
+    this.setState({ activePage: number }, () => {
+      const indexOfLastItem = this.state.activePage * this.state.itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - this.state.itemsPerPage;
+      
+      this.setState({ shownAircrafts: this.state.allAircrafts.slice(indexOfFirstItem, indexOfLastItem) })
     });
   }
 
   render() {
     const contextValue = {
       ...this.state,
-      // getAircraftList: this.getAircraftList,  || DECIDE WHAT TO DO WITH THIS LATER
       getGeolocationData: this.getGeolocationData,
-      setActivePage: this.setActivePage
+      handlePageChange: this.handlePageChange
     };
 
     return (
