@@ -7,6 +7,6 @@ TODO
 - add a separate page for showing single element
 - rebuild reloading functionality, pagination too
 - add pagination  DONE
-- organize this mess
+- organize this mess (add router, separate components)
 - sort aircrafts by id? 
 - add styling
