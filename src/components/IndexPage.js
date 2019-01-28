@@ -16,12 +16,27 @@ const IndexPage = () => (
       handlePageChange,
       shownAircrafts
     }) => (
-      <div>
-        <button onClick={getGeolocationData}>Get Aircraft Data</button>
+      <div className="container">
+        <h1 className="title">React Task Four</h1>
+        <button
+          className="btn"
+          onClick={getGeolocationData}
+        >
+          Get Aircraft Data
+        </button>
 
-        { fetching && <ClipLoader sizeUnit={'px'} size={150} color={'#123abc'} loading={fetching} /> }
+        { fetching && (
+          <div className="spinner"> 
+            <ClipLoader 
+              sizeUnit={'px'} 
+              size={100} 
+              color={'#123abc'} 
+              loading={fetching} 
+            />
+          </div>
+        )}
 
-        { shownAircrafts.length > 0 && (
+        { (shownAircrafts.length > 0 && !fetching) && (
           <>
             <Pagination
               activePage={activePage}

@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title {
+  color: $purple-dark;
+}
+
+.btn {
+  padding: 8px 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: $purple-dark;
+  background: $white;
+  border: 2px solid $purple-dark;
+  cursor: pointer;
+
+  &:hover {
+    background: $purple-dark;
+    color: $electric-blue;
+  }
+}
+
+.spinner {
+  padding: 30px 0;
+}
