@@ -20,4 +20,17 @@
       flex: 1;
     }
   }
+
+  @media screen and (max-width: $md) {
+    img {
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .data-row {
+      width: 95%;
+      font-size: 14px;
+      border-bottom: 1px solid $purple-dark;
+    }
+  }
 }
