@@ -1,5 +1,10 @@
+.table-wrapper {
+  overflow-x: auto;
+}
+
 .aircraft-table {
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
   color: $purple-dark;
   font-weight: bold;
@@ -33,6 +38,23 @@
       a {
         color: $purple-dark;
       }
+    }
+  }
+}
+
+@media screen and (max-width: $md) {
+  .aircraft-table {
+    font-weight: normal;
+    font-size: 15px;
+  
+    thead {
+      tr {
+        height: 30px;
+      }
+    }
+  
+    tr {
+      height: 30px;
     }
   }
 }

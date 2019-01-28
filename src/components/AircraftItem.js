@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Consumer } from '../context';
 import planeImg from '../images/plane.png';
 
-
 const AircraftItem = ({ aircraft }) => {
   const { Id, Op, Cou, Year, Man } = aircraft;
 
@@ -12,7 +11,7 @@ const AircraftItem = ({ aircraft }) => {
       {({ setActiveAircraft }) => (
         <tr>
           <td>{Id}</td>
-          <td>
+          <td className="hide-on-md">
             <img 
               src={Op ? `https://logo.clearbit.com/${Op.toLowerCase().replace(/\s/g, '')}.com` : planeImg }
               onError={e => e.target.src = planeImg}
@@ -24,7 +23,7 @@ const AircraftItem = ({ aircraft }) => {
           <td>{Man || 'Not Available'}</td>
           <td>
             <Link to={`/aircraft/${Id}`} onClick={() => setActiveAircraft(Id)}>
-              See More Details
+              Details
             </Link>
           </td>
         </tr>
