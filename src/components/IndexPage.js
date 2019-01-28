@@ -14,7 +14,8 @@ const IndexPage = () => (
       allAircrafts, 
       pageRange, 
       handlePageChange,
-      shownAircrafts
+      shownAircrafts,
+      error
     }) => (
       <div className="container">
         <h1 className="title">React Task Four</h1>
@@ -35,6 +36,8 @@ const IndexPage = () => (
             />
           </div>
         )}
+
+        { error && <div className="error-msg">{error}</div> }
 
         { (shownAircrafts.length > 0 && !fetching) && (
           <>

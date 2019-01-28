@@ -1,0 +1,23 @@
+.active-aircraft {
+  color: $purple-dark
+
+  img {
+    height: 150px;
+    margin-bottom: 30px;
+  }
+
+  .data-row {
+    width: 70%;
+    display: flex;
+    margin: 5px auto;
+    border-bottom: 2px solid $purple-dark;
+
+    span {
+      flex: 1;
+    }
+
+    strong {
+      flex: 1;
+    }
+  }
+}
