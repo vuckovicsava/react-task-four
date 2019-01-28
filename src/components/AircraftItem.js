@@ -1,4 +1,5 @@
 import React from 'react';
+import planeImg from '../images/plane.png';
 
 const AircraftItem = ({ aircraft }) => {
   const { Id, Op, Cou, Year, Man } = aircraft;
@@ -8,8 +9,8 @@ const AircraftItem = ({ aircraft }) => {
       <td>{Id}</td>
       <td>
         <img 
-          src={Op ? `https://logo.clearbit.com/${Op.toLowerCase().replace(/\s/g, '')}.com` : 'https://via.placeholder.com/100' }
-          onError={e => e.target.src = 'https://via.placeholder.com/100'}
+          src={Op ? `https://logo.clearbit.com/${Op.toLowerCase().replace(/\s/g, '')}.com` : planeImg }
+          onError={e => e.target.src = planeImg}
           alt={Op}
         />
       </td>

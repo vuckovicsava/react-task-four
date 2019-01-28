@@ -1,0 +1,38 @@
+.aircraft-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: $purple-dark;
+  font-weight: bold;
+
+  thead {
+    background: lighten($iceberg, 30);
+
+    tr {
+      height: 60px;
+    }
+
+    // th {
+    //   padding: 10px;
+    // }
+  }
+
+  tr {
+    height: 100px;
+    padding: 0;
+
+    &:nth-child(even) {
+      background: lighten($iceberg, 30);
+    }
+  }
+
+  td {
+    padding: 0;
+
+    img {
+      max-height: 100px;
+      max-width: 100px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

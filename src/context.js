@@ -48,7 +48,7 @@ export class Provider extends Component {
           }, 
           () => {
             this.getAircraftList();
-            setInterval(this.getAircraftList, 60000);
+            // setInterval(this.getAircraftList, 60000);
           }
         );
       }, err => this.setState({ error: 'Geolocation has to be enabled in order to get flights data ' }));
