@@ -1,5 +1,6 @@
 TODO
 
 - show errors in the UI
-- add styling
+- add styling | DONE
 - link to individual item page
+- remove unused scss variables

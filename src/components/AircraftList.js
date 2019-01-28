@@ -10,6 +10,7 @@ const AircraftList = ({ aircrafts }) => (
         <th>Country</th>
         <th>Year</th>
         <th>Manufacturer</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>

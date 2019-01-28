@@ -10,10 +10,6 @@
     tr {
       height: 60px;
     }
-
-    // th {
-    //   padding: 10px;
-    // }
   }
 
   tr {
@@ -23,16 +19,20 @@
     &:nth-child(even) {
       background: lighten($iceberg, 30);
     }
-  }
 
-  td {
-    padding: 0;
-
-    img {
-      max-height: 100px;
-      max-width: 100px;
-      display: block;
-      margin: 0 auto;
+    td {
+      padding: 0;
+  
+      img {
+        max-height: 100px;
+        max-width: 100px;
+        display: block;
+        margin: 0 auto;
+      }
+  
+      a {
+        color: $purple-dark;
+      }
     }
   }
 }

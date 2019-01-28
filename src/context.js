@@ -48,7 +48,7 @@ export class Provider extends Component {
           }, 
           () => {
             this.getAircraftList();
-            // setInterval(this.getAircraftList, 60000);
+            setInterval(this.getAircraftList, 60000);
           }
         );
       }, err => this.setState({ error: 'Geolocation has to be enabled in order to get flights data ' }));
@@ -67,11 +67,18 @@ export class Provider extends Component {
     });
   }
 
+  setActiveAircraft = id => {
+    this.setState((state) => ({
+      activeAircraft: state.allAircrafts.find(ac => ac.Id === id)
+    }));
+  }
+
   render() {
     const contextValue = {
       ...this.state,
       getGeolocationData: this.getGeolocationData,
-      handlePageChange: this.handlePageChange
+      handlePageChange: this.handlePageChange,
+      setActiveAircraft: this.setActiveAircraft
     };
 
     return (
